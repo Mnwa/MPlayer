@@ -1,0 +1,66 @@
+<!doctype html>
+
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Volton - Responsive Mobile Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/templatemo-style.css">
+    <link rel="stylesheet" href="styles/my-style.css">
+</head>
+    <body>
+        <my-app>
+            <div id="circularG">
+                <div id="circularG_1" class="circularG"></div>
+                <div id="circularG_2" class="circularG"></div>
+                <div id="circularG_3" class="circularG"></div>
+                <div id="circularG_4" class="circularG"></div>
+                <div id="circularG_5" class="circularG"></div>
+                <div id="circularG_6" class="circularG"></div>
+                <div id="circularG_7" class="circularG"></div>
+                <div id="circularG_8" class="circularG"></div>
+            </div>
+        </my-app>
+        <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+        <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+        <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="node_modules/rxjs/bundles/Rx.js"></script>
+        <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+        <script src="node_modules/whatwg-fetch/fetch.js"></script>
+        <script src="js/vendor/jquery-2.2.3.min.js"></script>
+        <script src="js/jquery.knob.min.js"></script>
+        <script src="js/min/plugins.min.js"></script>
+        <script src="js/min/main.min.js"></script>
+        <script>
+            System.baseURL = '/libs';
+        System.config({
+            map:{
+                angular2: '/node_modules/angular2',
+                rxjs: '/node_modules/rxjs'
+            },
+            packages: {
+                'angular2': {defaultExtension: 'js'},
+                'rxjs': { defaultExtension: 'js' },
+                './': { defaultExtension: 'js' }
+            },
+            paths: {
+                'es6-promise': '/node_modules/es6-promise/dist/es6-promise.min.js',
+                '*': '*.js'
+            }
+        });
+        System.import('app')['catch'](console.error.bind(console));
+        </script>
+        
+    </body>
+
+</html>

@@ -1,0 +1,105 @@
+<!-- htmlmin:ignore -->
+<input type="file" (change)="change($event)" accept="audio/*" *ngIf="!tracks">
+<div *ngIf="tracks">
+    <div>
+        <div>
+            <div *ngFor="let la of numberOfViz; let id = index" id="{{id}}"></div>
+        </div>
+    </div>
+    <div class="responsive-header visible-xs visible-sm">
+        <div class="container">
+            <div class="row" id="head">
+                <div class="chart col-sm-5">
+                    <input type="text" value="0" class="dial" disabled [hidden]="!audio">
+                </div>
+                <div class="col-sm-6">
+                    <h3 *ngIf="stream" class="profile-title">{{stream.artist}}</h3>
+                    <p *ngIf="stream" class="profile-description">{{stream.name}}</p>
+                </div>
+            </div>
+            <a (click)="HideSideBarMob()" href="javascript:void(0)" id="showP">
+                <img src="img/circle.svg">
+            </a>
+            <div class="main-navigation responsive-menu" id="sidebar">
+                <ul class="navigation">
+                    <li *ngFor="let track of tracks">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 no-padding xs sm">
+                                <a href="javascript:void(0)" (click)="play(track)">
+                                    <div class="col-xs-1">
+                                        <img *ngIf="stream!=track||audio.paused" src="img/play.svg" alt="" />
+                                        <img *ngIf="stream==track&&!audio.paused" src="img/pause.svg" alt="" />
+                                    </div>
+                                    <div class="col-xs-10 no-padding xs">
+                                        <p>
+                                            {{track.name}}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a (click)="ShowSideBarMob()" href="javascript:void(0)" id="hideP">
+            <img src="img/list.svg">
+        </a>
+    </div>
+    <div class="HightWidth">
+        <div *ngIf="tracks" class="sidebar-menu hidden-xs hidden-sm">
+            <a href="javascript:void(0)" (click)="HideSideBar()">
+                <img src="img/circle.svg" id="hide" />
+            </a>
+            <div class="top-section">
+                <div class="chart">
+                    <input type="text" class="dial" disabled [hidden]="!audio">
+                </div>
+                <h3 *ngIf="stream" class="profile-title">{{stream.artist}}</h3>
+                <p *ngIf="stream" class="profile-description">{{stream.name}}</p>
+            </div>
+            <!-- top-section -->
+            <div class="main-navigation" id="sidebar">
+                <ul class="navigation">
+                    <li *ngFor="let track of tracks">
+                        <div class="row">
+                            <a (click)="play(track)" href="javascript:void(0)">
+                                <div class="col-md-1">
+                                    <img *ngIf="stream!=track||audio.paused" src="img/play.svg" alt="" />
+                                    <img *ngIf="stream==track&&!audio.paused" src="img/pause.svg" alt="" />
+                                </div>
+                                <div class="col-md-10">
+                                    <p>
+                                        {{track.name}}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a href="javascript:void(0)" (click)="ShowSideBar()" id="showPlaylist">
+            <img src="img/show.svg" />
+        </a>
+    </div>
+    <div *ngIf="audio" id="play-block">
+        <a href="javascript:void(0)" (click)="next(stream, false)">
+            <img src="img/prev.svg" id="prev" />
+        </a>
+        <a href="javascript:void(0)" (click)="play()">
+            <img *ngIf="audio.paused" src="img/play.svg" id="play" />
+            <img *ngIf="!audio.paused" src="img/pause.svg" id="play" />
+        </a>
+        <a href="javascript:void(0)" (click)="next(stream, true)">
+            <img src="img/skip.svg" id="prev" />
+        </a>
+        <input type="range" min="0.0000001" max="100" step="1" value="100" class="hidden-xs hidden-sm">
+        <a href="javascript:void(0)" class="hidden-xs hidden-sm">
+            <img  *ngIf="audio.volume > 0.5 && !audio.muted" src="img/volume-max.svg" id="volume" (click)="mute()"/>
+            <img  *ngIf="audio.volume > 0.000001 && audio.volume <= 0.5 && !audio.muted" src="img/volume-medium.svg" id="volume" (click)="mute()"/>
+            <img  *ngIf="audio.volume <= 0.000001 || audio.muted" src="img/volume-muted.svg" id="volume" (click)="mute()"/>
+        </a>
+    </div>
+    {{wtf()}}
+</div>
